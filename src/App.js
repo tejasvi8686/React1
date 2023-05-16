@@ -1,56 +1,46 @@
-import './App.css';
-import Item from './Components/Item.js';
-import ItemDate from './Components/ItemDate.js';
-import SideBar from './Components/SideBar.js';
-function App (){
-  const response =[
+import React from 'react';
+import NewProduct from './components/NewProduct';
+
+import Products from './components/Products';
+
+const App = () => {
+  const products = [
     {
-      Name : 'app',
-      Surname :'lalu',
-      Tittle :'monu',
-      Nickname : 'Honey'
+      id: 'p1',
+      title: 'Nirma',
+      amount: 100,
+      date: new Date(2021, 8, 10),
+    },
+    { 
+      id: 'p2', 
+      title: 'Sirf Excel', 
+      amount: 200, 
+      date: new Date(2021, 2, 2) },
+    {
+      id: 'p3',
+      title: 'Tide',
+      amount: 130,
+      date: new Date(2021, 12, 28),
     },
     {
-      Name : 'app2',
-      Surname :'lalu2',
-      Tittle :'monu2',
-      Nickname : 'Honey2'
+      id: 'p4',
+      title: 'Maggi',
+      amount: 450,
+      date: new Date(2021, 5, 5),
     },
-    {
-      Name : 'app3',
-      Surname :'lalu3',
-      Tittle :'monu3',
-      Nickname : 'Honey3'
-    },
-  
-    
-  
-  ]
-  return(
+  ];
 
-    <SideBar>
-    <div className='App'> 
-       <Item Name = {response[0].Name}>
-        hello jee kase ho
-       </Item>
-       <ItemDate Surname = {response[0].Surname }Tittle ={response[0].Tittle} Nickname={response[0].Nickname}></ItemDate>
+  function printProductData(data) {
+    console.log("i am inside APP.js")
+    console.log(data)
+  }
 
-       <Item Name = {response[1].Name}></Item>
-       <ItemDate Surname = {response[1].Surname }Tittle ={response[1].Tittle} Nickname={response[1].Nickname}></ItemDate>
-      
-
-       <Item Name = {response[2].Name}></Item>
-       <ItemDate Surname = {response[2].Surname }Tittle ={response[2].Tittle} Nickname={response[2].Nickname}></ItemDate>
-
-       <div className='hey'>
-       heyy tejasvi how are you
-       </div>
+  return (
+    <div>
+      <NewProduct pranay = {printProductData} />
+      <Products items={products} />
     </div>
-
-    </SideBar>
-    
-     
-  )
-
+  );
 }
+
 export default App;
