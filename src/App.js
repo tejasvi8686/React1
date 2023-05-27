@@ -1,43 +1,55 @@
-import React from 'react';
-import NewProduct from './components/NewProduct';
-import Products from './components/Products';
+import './App.css';
+import { useEffect, useState } from 'react';
 
-const App = () => {
-  const products = [
-    {
-      id: 'p1',
-      title: 'Nirma',
-      amount: 100,
-      date: new Date(2021, 8, 10),
-    },
-    { 
-      id: 'p2', 
-      title: 'Sirf Excel', 
-      amount: 200, 
-      date: new Date(2021, 2, 2) },
-    {
-      id: 'p3',
-      title: 'Tide',
-      amount: 130,
-      date: new Date(2021, 12, 28),
-    },
-    {
-      id: 'p4',
-      title: 'Maggi',
-      amount: 450,
-      date: new Date(2021, 5, 5),
-    },
-  ];
+function App(){
+  const [text,setText] = useState('');
+  const [name, setName]= useState('love')
+  
+  //variation 1 -> Every Render
+  // useEffect (
+  //   () => {
+  //     console.log("UI Rendering Done");
+  //   });
 
-  function printProductData(data) {
-    console.log("i am inside APP.js")
-    console.log(data)
+
+    // Variation 2 -> First Render
+    // useEffect ( () =>{
+    //   console.log("UI Rendering Done");
+    // },[]);
+
+
+
+    //variation 3 -> whenever dependency changes
+    // useEffect (
+    //   ()=>{
+    //     console.log("change observed");
+    //   },[name]);
+
+
+
+    //variation 4 -> to handle unmounting of a component
+    useEffect (
+      ()=>{
+        // add event  listener
+        console.log("listener added");
+
+        
+        return () =>
+        {console.log("listner removed");
+      }},[text]);
+
+
+
+  function  ChangeHandler (event) {
+      console.log(text);
+      setText(event.target.value);
   }
 
-  return (
-    <div>
-      <NewProduct pranay = {printProductData} />
-      <Products items={products} />
+
+  return(
+    <div className="App">
+    <input type = "text"onChange={ChangeHandler}></input>
+
     </div>
   );
 }
